@@ -1,6 +1,13 @@
-import { AppBar, Badge, Box, IconButton, OutlinedInput, Toolbar } from "@mui/material";
-import { FiberManualRecord, NotificationsOutlined } from "@mui/icons-material";
-import { drawerWidth } from "./Sidebar";
+import {
+  AppBar,
+  Badge,
+  Box,
+  IconButton,
+  OutlinedInput,
+  Toolbar,
+} from '@mui/material';
+import { FiberManualRecord, NotificationsOutlined } from '@mui/icons-material';
+import { drawerWidth } from './Sidebar';
 
 function Navbar() {
   return (
@@ -9,13 +16,13 @@ function Navbar() {
       color="inherit"
       sx={{
         width: { sm: `calc(100% - ${drawerWidth}px)` },
-        ml: { sm: `${drawerWidth}px` }
+        ml: { sm: `${drawerWidth}px` },
       }}
     >
       <Toolbar
         sx={{
-          display: "flex",
-          justifyContent: "right"
+          display: 'flex',
+          justifyContent: 'right',
         }}
       >
         <Box>
@@ -23,14 +30,14 @@ function Navbar() {
             size="small"
             sx={{
               borderRadius: 10,
-              width: "500px"
+              width: '500px',
             }}
             placeholder="Search..."
           />
 
           <IconButton
             sx={{
-              mx: 1
+              mx: 1,
             }}
           >
             <Badge badgeContent="5" color="primary">

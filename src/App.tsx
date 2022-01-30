@@ -1,5 +1,5 @@
-import Navbar from "./components/Layout/Navbar";
-import Sidebar from "./components/Layout/Sidebar";
+import Navbar from './components/Layout/Navbar';
+import Sidebar from './components/Layout/Sidebar';
 
 function App() {
   return (

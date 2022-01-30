@@ -8,9 +8,9 @@ import {
   ListItemText,
   ListSubheader,
   Toolbar,
-  Typography
-} from "@mui/material";
-import { useState } from "react";
+  Typography,
+} from '@mui/material';
+import { useState } from 'react';
 import {
   AirplanemodeActiveOutlined,
   BuildCircleOutlined,
@@ -25,8 +25,8 @@ import {
   MoneyOutlined,
   MonitorOutlined,
   PersonOutlined,
-  TableChartOutlined
-} from "@mui/icons-material";
+  TableChartOutlined,
+} from '@mui/icons-material';
 
 export const drawerWidth = 240;
 
@@ -42,81 +42,81 @@ function Sidebar() {
   const data = [
     {
       icon: <MonitorOutlined />,
-      label: "Dashboard",
-      selected: true
+      label: 'Dashboard',
+      selected: true,
     },
     {
-      subheader: "APPS",
+      subheader: 'APPS',
       sItem: [
         {
           icon: <EmailOutlined />,
-          label: "Email"
+          label: 'Email',
         },
         {
           icon: <ChatOutlined />,
-          label: "Chat"
+          label: 'Chat',
         },
         {
           icon: <ListOutlined />,
-          label: "To Do"
-        }
-      ]
+          label: 'To Do',
+        },
+      ],
     },
     {
-      subheader: "PAGES",
+      subheader: 'PAGES',
       sItem: [
         {
           icon: <AirplanemodeActiveOutlined />,
-          label: "Lading"
+          label: 'Lading',
         },
         {
           icon: <MoneyOutlined />,
-          label: "Pricing"
+          label: 'Pricing',
         },
         {
           icon: <LocalPrintshopOutlined />,
-          label: "Billing"
+          label: 'Billing',
         },
         {
           icon: <PersonOutlined />,
-          label: "Profile"
+          label: 'Profile',
         },
         {
           icon: <BuildCircleOutlined />,
-          label: "Setting"
-        }
-      ]
+          label: 'Setting',
+        },
+      ],
     },
     {
-      subheader: "COMPONENTS",
+      subheader: 'COMPONENTS',
       sItem: [
         {
           icon: <CreateOutlined />,
-          label: "Form"
+          label: 'Form',
         },
         {
           icon: <ListAltOutlined />,
-          label: "List"
+          label: 'List',
         },
         {
           icon: <TableChartOutlined />,
-          label: "Table"
-        }
-      ]
+          label: 'Table',
+        },
+      ],
     },
     {
-      subheader: "Exception",
+      subheader: 'Exception',
       sItem: [
         {
           icon: <CheckCircleOutlined />,
-          label: "Success"
+          label: 'Success',
         },
         {
           icon: <HighlightOffOutlined />,
-          label: "Fail"
-        }
-      ]
-    }
+          label: 'Fail',
+        },
+      ],
+    },
   ];
 
   const drawer = (
@@ -164,14 +164,14 @@ function Sidebar() {
         open={mobileOpen}
         onClose={handleDrawerToggle}
         ModalProps={{
-          keepMounted: true // Better open performance on mobile.
+          keepMounted: true, // Better open performance on mobile.
         }}
         sx={{
-          display: { xs: "block", sm: "none" },
-          "& .MuiDrawer-paper": {
-            boxSizing: "border-box",
-            width: drawerWidth
-          }
+          display: { xs: 'block', sm: 'none' },
+          '& .MuiDrawer-paper': {
+            boxSizing: 'border-box',
+            width: drawerWidth,
+          },
         }}
       >
         {drawer}
@@ -179,11 +179,11 @@ function Sidebar() {
       <Drawer
         variant="permanent"
         sx={{
-          display: { xs: "none", sm: "block" },
-          "& .MuiDrawer-paper": {
-            boxSizing: "border-box",
-            width: drawerWidth
-          }
+          display: { xs: 'none', sm: 'block' },
+          '& .MuiDrawer-paper': {
+            boxSizing: 'border-box',
+            width: drawerWidth,
+          },
         }}
         open
       >
