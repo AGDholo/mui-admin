@@ -9,6 +9,7 @@ import {
   ListSubheader,
   Toolbar,
   Typography,
+  useTheme,
 } from '@mui/material';
 import { useState } from 'react';
 import {
@@ -32,7 +33,7 @@ export const drawerWidth = 240;
 
 function Sidebar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-
+  const theme = useTheme();
   const container = window !== undefined ? () => document.body : undefined;
 
   const handleDrawerToggle = () => {
@@ -122,10 +123,16 @@ function Sidebar() {
   const drawer = (
     <div>
       <Toolbar disableGutters sx={{ ml: 2 }}>
-        <Typography variant="h6">MUI Admin</Typography>
+        <Typography
+          variant="subtitle1"
+          sx={{ letterSpacing: '.0125em', color: theme.palette.info.main }}
+          fontWeight="600"
+        >
+          MUI ADMIN
+        </Typography>
       </Toolbar>
       <Divider />
-      <List>
+      <List dense>
         {data.map((item) => {
           if (item.subheader) {
             return (

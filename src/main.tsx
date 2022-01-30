@@ -24,6 +24,9 @@ const theme = createTheme({
     primary: {
       main: '#020e25',
     },
+    text: {
+      primary: '#020e25',
+    },
   },
   components: {
     MuiPaper: {
