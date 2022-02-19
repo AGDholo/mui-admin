@@ -14,6 +14,7 @@ function Navbar() {
     <AppBar
       position="fixed"
       color="inherit"
+      elevation={0}
       sx={{
         width: { sm: `calc(100% - ${drawerWidth}px)` },
         ml: { sm: `${drawerWidth}px` },

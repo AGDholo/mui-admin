@@ -31,7 +31,7 @@ const theme = createTheme({
   components: {
     MuiPaper: {
       styleOverrides: {
-        elevation: {
+        elevation1: {
           boxShadow:
             '0 2px 30px -1px rgb(85 85 85 / 8%), 0 4px 30px 0 rgb(85 85 85 / 6%), 0 1px 30px 0 rgb(85 85 85 / 3%)',
         },

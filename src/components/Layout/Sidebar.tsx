@@ -4,6 +4,7 @@ import {
   Drawer,
   List,
   ListItem,
+  ListItemButton,
   ListItemIcon,
   ListItemText,
   ListSubheader,
@@ -132,7 +133,7 @@ function Sidebar() {
         </Typography>
       </Toolbar>
       <Divider />
-      <List dense>
+      <List>
         {data.map((item) => {
           if (item.subheader) {
             return (
@@ -141,7 +142,14 @@ function Sidebar() {
                   {item.subheader}
                 </ListSubheader>
                 {item.sItem.map((subItem) => (
-                  <ListItem button key={subItem.label}>
+                  <ListItem
+                    button
+                    key={subItem.label}
+                    sx={{
+                      borderTopRightRadius: 20,
+                      borderBottomRightRadius: 20,
+                    }}
+                  >
                     <ListItemIcon>{subItem.icon}</ListItemIcon>
                     <ListItemText primary={subItem.label} />
                   </ListItem>
@@ -150,10 +158,17 @@ function Sidebar() {
             );
           }
           return (
-            <ListItem button key={item.label} selected={item.selected}>
+            <ListItemButton
+              key={item.label}
+              selected={item.selected}
+              sx={{
+                borderTopRightRadius: 20,
+                borderBottomRightRadius: 20,
+              }}
+            >
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.label} />
-            </ListItem>
+            </ListItemButton>
           );
         })}
       </List>
@@ -170,6 +185,7 @@ function Sidebar() {
         variant="temporary"
         open={mobileOpen}
         onClose={handleDrawerToggle}
+        elevation={0}
         ModalProps={{
           keepMounted: true, // Better open performance on mobile.
         }}
@@ -184,6 +200,7 @@ function Sidebar() {
         {drawer}
       </Drawer>
       <Drawer
+        elevation={0}
         variant="permanent"
         sx={{
           display: { xs: 'none', sm: 'block' },
