@@ -12,18 +12,9 @@ import {
 import { CallMadeOutlined } from '@mui/icons-material';
 import Navbar from './components/Layout/Navbar';
 import Sidebar, { drawerWidth } from './components/Layout/Sidebar';
+import darkTheme from './themes/dark.theme';
 
 function App() {
-  const theme = createTheme({
-    palette: {
-      mode: 'dark',
-      background: {
-        default: '#020e25',
-        paper: '#020e25',
-      },
-    },
-  });
-
   return (
     <Box sx={{ display: 'flex' }}>
       <Navbar />
@@ -41,7 +32,7 @@ function App() {
 
         <Grid container>
           <Grid item xs={12} md={6} lg={3}>
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={darkTheme}>
               <Card>
                 <CardContent>
                   <Typography variant="subtitle1" fontWeight="bold">
