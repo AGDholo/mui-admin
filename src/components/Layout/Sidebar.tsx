@@ -13,22 +13,8 @@ import {
   useTheme,
 } from '@mui/material';
 import { useState } from 'react';
-import {
-  AirplanemodeActiveOutlined,
-  BuildCircleOutlined,
-  ChatOutlined,
-  CheckCircleOutlined,
-  CreateOutlined,
-  EmailOutlined,
-  HighlightOffOutlined,
-  ListAltOutlined,
-  ListOutlined,
-  LocalPrintshopOutlined,
-  MoneyOutlined,
-  MonitorOutlined,
-  PersonOutlined,
-  TableChartOutlined,
-} from '@mui/icons-material';
+import { Link, useLocation } from 'react-router-dom';
+import staticRoutes from '../../routes/app.router';
 
 export const drawerWidth = 240;
 
@@ -41,85 +27,7 @@ function Sidebar() {
     setMobileOpen(!mobileOpen);
   };
 
-  const data = [
-    {
-      icon: <MonitorOutlined />,
-      label: 'Dashboard',
-      selected: true,
-    },
-    {
-      subheader: 'APPS',
-      sItem: [
-        {
-          icon: <EmailOutlined />,
-          label: 'Email',
-        },
-        {
-          icon: <ChatOutlined />,
-          label: 'Chat',
-        },
-        {
-          icon: <ListOutlined />,
-          label: 'To Do',
-        },
-      ],
-    },
-    {
-      subheader: 'PAGES',
-      sItem: [
-        {
-          icon: <AirplanemodeActiveOutlined />,
-          label: 'Lading',
-        },
-        {
-          icon: <MoneyOutlined />,
-          label: 'Pricing',
-        },
-        {
-          icon: <LocalPrintshopOutlined />,
-          label: 'Billing',
-        },
-        {
-          icon: <PersonOutlined />,
-          label: 'Profile',
-        },
-        {
-          icon: <BuildCircleOutlined />,
-          label: 'Setting',
-        },
-      ],
-    },
-    {
-      subheader: 'COMPONENTS',
-      sItem: [
-        {
-          icon: <CreateOutlined />,
-          label: 'Form',
-        },
-        {
-          icon: <ListAltOutlined />,
-          label: 'List',
-        },
-        {
-          icon: <TableChartOutlined />,
-          label: 'Table',
-        },
-      ],
-    },
-    {
-      subheader: 'Exception',
-      sItem: [
-        {
-          icon: <CheckCircleOutlined />,
-          label: 'Success',
-        },
-        {
-          icon: <HighlightOffOutlined />,
-          label: 'Fail',
-        },
-      ],
-    },
-  ];
+  const { pathname } = useLocation();
 
   const drawer = (
     <div>
@@ -134,43 +42,58 @@ function Sidebar() {
       </Toolbar>
       <Divider />
       <List>
-        {data.map((item) => {
-          if (item.subheader) {
-            return (
-              <>
-                <ListSubheader key={item.subheader}>
-                  {item.subheader}
-                </ListSubheader>
-                {item.sItem.map((subItem) => (
-                  <ListItem
-                    button
-                    key={subItem.label}
-                    sx={{
-                      borderTopRightRadius: 20,
-                      borderBottomRightRadius: 20,
-                    }}
-                  >
-                    <ListItemIcon>{subItem.icon}</ListItemIcon>
-                    <ListItemText primary={subItem.label} />
-                  </ListItem>
-                ))}
-              </>
-            );
-          }
-          return (
-            <ListItemButton
-              key={item.label}
-              selected={item.selected}
-              sx={{
-                borderTopRightRadius: 20,
-                borderBottomRightRadius: 20,
-              }}
-            >
-              <ListItemIcon>{item.icon}</ListItemIcon>
-              <ListItemText primary={item.label} />
-            </ListItemButton>
-          );
-        })}
+        {staticRoutes.map((item) => (
+          <>
+            {item.subheader && (
+              <ListSubheader key={item.subheader}>
+                {item.subheader}
+              </ListSubheader>
+            )}
+
+            {item.data && (
+              <Link
+                to={`${item.path}` ?? '#'}
+                style={{ color: 'initial', textDecoration: 'none' }}
+              >
+                <ListItemButton
+                  key={item?.data.label}
+                  selected={pathname === `/${item.path}`}
+                  sx={{
+                    borderTopRightRadius: 20,
+                    borderBottomRightRadius: 20,
+                  }}
+                >
+                  <ListItemIcon>{item?.data.icon}</ListItemIcon>
+                  <ListItemText primary={item?.data.label} />
+                </ListItemButton>
+              </Link>
+            )}
+
+            {item.children &&
+              item?.children.map(
+                (subItem) =>
+                  subItem.data && (
+                    <Link
+                      to={`${item.path}/${subItem.path}` ?? '#'}
+                      style={{ color: 'initial', textDecoration: 'none' }}
+                    >
+                      <ListItem
+                        button
+                        selected={pathname === `/${item.path}/${subItem.path}`}
+                        key={subItem?.data.label}
+                        sx={{
+                          borderTopRightRadius: 20,
+                          borderBottomRightRadius: 20,
+                        }}
+                      >
+                        <ListItemIcon>{subItem?.data.icon}</ListItemIcon>
+                        <ListItemText primary={subItem?.data.label} />
+                      </ListItem>
+                    </Link>
+                  )
+              )}
+          </>
+        ))}
       </List>
     </div>
   );
