@@ -13,7 +13,7 @@ import {
   TableChartOutlined,
 } from '@mui/icons-material';
 import { RouteObject } from 'react-router-dom';
-import Home from '../pages/home';
+import Home from '../pages/Home';
 
 interface IAppRoutes extends RouteObject {
   data?: {
