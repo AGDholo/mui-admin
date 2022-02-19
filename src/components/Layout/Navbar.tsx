@@ -6,7 +6,11 @@ import {
   OutlinedInput,
   Toolbar,
 } from '@mui/material';
-import { FiberManualRecord, NotificationsOutlined } from '@mui/icons-material';
+import {
+  FiberManualRecord,
+  GitHub,
+  NotificationsOutlined,
+} from '@mui/icons-material';
 import { drawerWidth } from './Sidebar';
 
 function Navbar() {
@@ -35,6 +39,14 @@ function Navbar() {
             }}
             placeholder="Search..."
           />
+
+          <IconButton
+            sx={{ ml: 1 }}
+            href="https://github.com/AGDholo/mui-admin"
+            target="_blank"
+          >
+            <GitHub />
+          </IconButton>
 
           <IconButton
             sx={{
