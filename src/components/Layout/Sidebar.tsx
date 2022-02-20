@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Divider,
   Drawer,
   List,
@@ -35,7 +34,10 @@ function Sidebar() {
       <Toolbar disableGutters sx={{ ml: 2 }}>
         <Typography
           variant="subtitle1"
-          sx={{ letterSpacing: '.0125em', color: theme.palette.info.main }}
+          sx={{
+            letterSpacing: '.0125em',
+            color: theme.palette.info.main,
+          }}
           fontWeight="600"
         >
           MUI ADMIN
@@ -44,20 +46,23 @@ function Sidebar() {
       <Divider />
       <List>
         {staticRoutes.map((item) => (
-          <>
+          <Box key={`${item.subheader}/${item.path}`}>
             {item.subheader && (
-              <ListSubheader key={item.subheader}>
+              <ListSubheader key={`${item.subheader}`}>
                 {item.subheader}
               </ListSubheader>
             )}
 
             {item.data && (
               <Link
+                key={`${item?.data.label}/${item.path}`}
                 to={`${item.path}` ?? '#'}
-                style={{ color: 'initial', textDecoration: 'none' }}
+                style={{
+                  color: 'initial',
+                  textDecoration: 'none',
+                }}
               >
                 <ListItemButton
-                  key={item?.data.label}
                   selected={pathname === `/${item.path}`}
                   sx={{
                     borderTopRightRadius: 20,
@@ -75,13 +80,16 @@ function Sidebar() {
                 (subItem) =>
                   subItem.data && (
                     <Link
+                      key={subItem?.data.label}
                       to={`${item.path}/${subItem.path}` ?? '#'}
-                      style={{ color: 'initial', textDecoration: 'none' }}
+                      style={{
+                        color: 'initial',
+                        textDecoration: 'none',
+                      }}
                     >
                       <ListItem
                         button
-                        selected={pathname === `/${item.path}/${subItem.path}`}
-                        key={subItem?.data.label}
+                        selected={pathname === `${item.path}/${subItem.path}`}
                         sx={{
                           borderTopRightRadius: 20,
                           borderBottomRightRadius: 20,
@@ -93,7 +101,7 @@ function Sidebar() {
                     </Link>
                   )
               )}
-          </>
+          </Box>
         ))}
       </List>
     </div>
@@ -102,7 +110,10 @@ function Sidebar() {
   return (
     <Box
       component="nav"
-      sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+      sx={{
+        width: { sm: drawerWidth },
+        flexShrink: { sm: 0 },
+      }}
     >
       <Drawer
         container={container}
@@ -114,7 +125,10 @@ function Sidebar() {
           keepMounted: true, // Better open performance on mobile.
         }}
         sx={{
-          display: { xs: 'block', sm: 'none' },
+          display: {
+            xs: 'block',
+            sm: 'none',
+          },
           '& .MuiDrawer-paper': {
             boxSizing: 'border-box',
             width: drawerWidth,
@@ -127,7 +141,10 @@ function Sidebar() {
         elevation={0}
         variant="permanent"
         sx={{
-          display: { xs: 'none', sm: 'block' },
+          display: {
+            xs: 'none',
+            sm: 'block',
+          },
           '& .MuiDrawer-paper': {
             boxSizing: 'border-box',
             width: drawerWidth,

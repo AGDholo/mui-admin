@@ -1,5 +1,9 @@
 module.exports = {
-  env: { browser: true, es2021: true, node: true },
+  env: {
+    browser: true,
+    es2021: true,
+    node: true,
+  },
   extends: ['plugin:react/recommended', 'prettier', 'airbnb'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -19,11 +23,19 @@ module.exports = {
     'import/extensions': [
       'error',
       'ignorePackages',
-      { js: 'never', jsx: 'never', ts: 'never', tsx: 'never' },
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
     ],
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
     'comma-dangle': 'off',
+    'array-callback-return': 'off',
+    'consistent-return': 'off',
+    'implicit-arrow-linebreak': 'off',
   },
   settings: {
     'import/resolver': {

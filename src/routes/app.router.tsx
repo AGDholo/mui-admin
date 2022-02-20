@@ -1,21 +1,22 @@
 import {
-  MonitorOutlined,
-  EmailOutlined,
-  ChatOutlined,
-  ListOutlined,
   AirplanemodeActiveOutlined,
-  MoneyOutlined,
-  LocalPrintshopOutlined,
-  PersonOutlined,
   BuildCircleOutlined,
+  ChatOutlined,
   CreateOutlined,
+  EmailOutlined,
   ListAltOutlined,
+  ListOutlined,
+  LocalPrintshopOutlined,
+  MoneyOutlined,
+  MonitorOutlined,
+  PersonOutlined,
   TableChartOutlined,
 } from '@mui/icons-material';
 import { RouteObject } from 'react-router-dom';
+import React from 'react';
 import Home from '../pages/Home';
 
-interface IAppRoutes extends RouteObject {
+export interface IAppRoutes extends RouteObject {
   data?: {
     label?: string;
     icon?: React.ReactElement;
@@ -23,21 +24,31 @@ interface IAppRoutes extends RouteObject {
   };
   subheader?: string;
   children?: IAppRoutes[];
+  meta?: {
+    title?: string;
+    description?: string;
+    keywords?: string;
+  };
 }
 
 // static router
 const staticRoutes: IAppRoutes[] = [
   {
-    path: '',
+    path: '/',
     element: <Home />,
     data: {
       icon: <MonitorOutlined />,
       label: 'Dashboard',
       selected: true,
     },
+    meta: {
+      title: 'Dashboard',
+      description: '',
+      keywords: '',
+    },
   },
   {
-    path: 'apps',
+    path: '/apps',
     subheader: 'APPS',
     children: [
       {
@@ -67,7 +78,7 @@ const staticRoutes: IAppRoutes[] = [
     ],
   },
   {
-    path: 'pages',
+    path: '/pages',
     subheader: 'PAGES',
     children: [
       {
@@ -108,7 +119,7 @@ const staticRoutes: IAppRoutes[] = [
     ],
   },
   {
-    path: 'components',
+    path: '/components',
     subheader: 'COMPONENTS',
     children: [
       {
