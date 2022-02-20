@@ -15,6 +15,8 @@ import {
 import { RouteObject } from 'react-router-dom';
 import React from 'react';
 import Home from '../pages/Home';
+import Pricing from '../pages/pages/Pricing';
+import Email from '../pages/apps/Email';
 
 export interface IAppRoutes extends RouteObject {
   data?: {
@@ -53,11 +55,16 @@ const staticRoutes: IAppRoutes[] = [
     children: [
       {
         path: 'email',
+        meta: {
+          title: 'Email',
+          description: '',
+          keywords: '',
+        },
         data: {
           icon: <EmailOutlined />,
           label: 'Email',
         },
-        element: <Home />,
+        element: <Email />,
       },
       {
         path: 'chat',
@@ -90,6 +97,12 @@ const staticRoutes: IAppRoutes[] = [
       },
       {
         path: 'pricing',
+        meta: {
+          title: 'Pricing',
+          description: '',
+          keywords: '',
+        },
+        element: <Pricing />,
         data: {
           icon: <MoneyOutlined />,
           label: 'Pricing',

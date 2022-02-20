@@ -4,7 +4,6 @@ import {
   Drawer,
   List,
   ListItem,
-  ListItemButton,
   ListItemIcon,
   ListItemText,
   ListSubheader,
@@ -62,16 +61,10 @@ function Sidebar() {
                   textDecoration: 'none',
                 }}
               >
-                <ListItemButton
-                  selected={pathname === `/${item.path}`}
-                  sx={{
-                    borderTopRightRadius: 20,
-                    borderBottomRightRadius: 20,
-                  }}
-                >
+                <ListItem button selected={pathname === `/${item.path}`}>
                   <ListItemIcon>{item?.data.icon}</ListItemIcon>
                   <ListItemText primary={item?.data.label} />
-                </ListItemButton>
+                </ListItem>
               </Link>
             )}
 
@@ -90,10 +83,6 @@ function Sidebar() {
                       <ListItem
                         button
                         selected={pathname === `${item.path}/${subItem.path}`}
-                        sx={{
-                          borderTopRightRadius: 20,
-                          borderBottomRightRadius: 20,
-                        }}
                       >
                         <ListItemIcon>{subItem?.data.icon}</ListItemIcon>
                         <ListItemText primary={subItem?.data.label} />

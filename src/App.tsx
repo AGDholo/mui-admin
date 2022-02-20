@@ -17,7 +17,7 @@ function setDocumentTitle() {
 
 function App() {
   // init router
-  const element = useRoutes(staticRoutes);
+  const pages = useRoutes(staticRoutes);
 
   // init document title
   setDocumentTitle();
@@ -37,7 +37,7 @@ function App() {
       >
         <Toolbar />
 
-        {element}
+        {pages}
       </Box>
     </Box>
   );
