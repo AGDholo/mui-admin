@@ -61,7 +61,7 @@ function Sidebar() {
                   textDecoration: 'none',
                 }}
               >
-                <ListItem button selected={pathname === `/${item.path}`}>
+                <ListItem button selected={pathname === `${item.path}`}>
                   <ListItemIcon>{item?.data.icon}</ListItemIcon>
                   <ListItemText primary={item?.data.label} />
                 </ListItem>
