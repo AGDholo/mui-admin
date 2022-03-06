@@ -7,6 +7,7 @@ import {
   ListAltOutlined,
   ListOutlined,
   LocalPrintshopOutlined,
+  LoginOutlined,
   MoneyOutlined,
   MonitorOutlined,
   PersonOutlined,
@@ -17,6 +18,7 @@ import React from 'react';
 import Home from '../pages/Home';
 import Pricing from '../pages/pages/Pricing';
 import Email from '../pages/apps/Email';
+import Login from '../pages/pages/Login';
 
 export interface IAppRoutes extends RouteObject {
   data?: {
@@ -88,6 +90,19 @@ const staticRoutes: IAppRoutes[] = [
     path: '/pages',
     subheader: 'PAGES',
     children: [
+      {
+        path: 'login',
+        data: {
+          icon: <LoginOutlined />,
+          label: 'Login',
+        },
+        meta: {
+          title: 'Login',
+          description: '',
+          keywords: '',
+        },
+        element: <Login />,
+      },
       {
         path: 'lading',
         data: {
