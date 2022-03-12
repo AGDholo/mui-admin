@@ -3,8 +3,9 @@ import { useRoutes } from 'react-router-dom';
 import { useEffect } from 'react';
 import Navbar from './components/Layout/Navbar';
 import Sidebar, { drawerWidth } from './components/Layout/Sidebar';
-import staticRoutes from './routes/app.router';
+import { staticRoutes } from './routes/app.router';
 import useCurrentRoute from './routes/useCurrentRoute';
+import { useAuth } from './hooks/useAuth';
 
 function setDocumentTitle() {
   const { meta } = useCurrentRoute();
@@ -17,15 +18,20 @@ function setDocumentTitle() {
 
 function App() {
   // init router
-  const pages = useRoutes(staticRoutes);
+  const { isLogin } = useAuth();
+  const staticPages = useRoutes(staticRoutes);
 
   // init document title
   setDocumentTitle();
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <Navbar />
-      <Sidebar />
+      {isLogin && (
+        <Box>
+          <Navbar />
+          <Sidebar />
+        </Box>
+      )}
 
       <Box
         component="main"
@@ -37,7 +43,7 @@ function App() {
       >
         <Toolbar />
 
-        {pages}
+        {staticPages}
       </Box>
     </Box>
   );

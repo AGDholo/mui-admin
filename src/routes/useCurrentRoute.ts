@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import staticRoutes, { IAppRoutes } from './app.router';
+import { IAppRoutes, staticRoutes } from './app.router';
 
 const useCurrentRoute = () => {
   const { pathname } = useLocation();

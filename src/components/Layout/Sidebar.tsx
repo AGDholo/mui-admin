@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import staticRoutes from '../../routes/app.router';
+import { staticRoutes } from '../../routes/app.router';
 
 export const drawerWidth = 240;
 

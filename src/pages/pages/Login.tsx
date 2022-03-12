@@ -8,8 +8,18 @@ import {
   CardActions,
   Button,
 } from '@mui/material';
+import { useAuth } from '../../hooks/useAuth';
 
 function Login() {
+  const { login } = useAuth();
+
+  const handleSubmit = () => {
+    login({
+      email: '123',
+      password: '123',
+    });
+  };
+
   return (
     <Box display="flex" justifyContent="center" mt={20}>
       <Card sx={{ maxWidth: '600px', width: '100%', p: 4 }}>
@@ -23,12 +33,26 @@ function Login() {
             Welcome to Mui-Admin
           </Typography>
 
-          <OutlinedInput fullWidth placeholder="Email" sx={{ my: 2, mt: 4 }} />
-          <OutlinedInput fullWidth placeholder="Password" />
+          <OutlinedInput
+            fullWidth
+            placeholder="Email"
+            value="any@any.email"
+            sx={{ my: 2, mt: 4 }}
+          />
+          <OutlinedInput
+            value="any.password"
+            fullWidth
+            placeholder="Password"
+          />
         </CardContent>
 
         <CardActions sx={{ display: 'flex', justifyContent: 'end' }}>
-          <Button size="large" variant="contained" endIcon={<LoginOutlined />}>
+          <Button
+            size="large"
+            variant="contained"
+            endIcon={<LoginOutlined />}
+            onClick={handleSubmit}
+          >
             Login
           </Button>
         </CardActions>

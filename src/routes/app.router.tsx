@@ -36,7 +36,7 @@ export interface IAppRoutes extends RouteObject {
 }
 
 // static router
-const staticRoutes: IAppRoutes[] = [
+export const staticRoutes: IAppRoutes[] = [
   {
     path: '/',
     element: <Home />,
@@ -174,5 +174,3 @@ const staticRoutes: IAppRoutes[] = [
     ],
   },
 ];
-
-export default staticRoutes;
