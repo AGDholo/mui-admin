@@ -19,7 +19,9 @@ export const useAuth = () => {
   // set token if it found in localStorage
   const localToken = localStorage.getItem('token') ?? '';
   useEffect(() => {
-    setAuthState({ ...authState, isAuthenticated: localToken !== '' });
+    if (localToken) {
+      setAuthState({ ...authState, isAuthenticated: localToken !== '' });
+    }
   }, [localToken]);
 
   // export a login function
@@ -46,7 +48,7 @@ export const useAuth = () => {
   }, [authState]);
 
   // export a function to check if user is authenticated
-  const isLogin = authState.isAuthenticated;
+  const isLogin = localToken;
   const { meta } = useCurrentRoute();
 
   useEffect(() => {
