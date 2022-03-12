@@ -23,6 +23,7 @@ import {
   LogoutOutlined,
   NotificationsOutlined,
 } from '@mui/icons-material';
+import { useCallback } from 'react';
 import { drawerWidth } from './Sidebar';
 import { useAuth } from '../../hooks/useAuth';
 

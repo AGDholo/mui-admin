@@ -45,6 +45,7 @@ export const useAuth = () => {
       token: '',
       isAuthenticated: false,
     });
+    navigate('/pages/login');
   }, [authState]);
 
   // export a function to check if user is authenticated
