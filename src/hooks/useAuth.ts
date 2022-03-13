@@ -9,7 +9,11 @@ interface IInput {
   password: string;
 }
 
-const fakeToken = (secretKey: IInput) => secretKey.email + secretKey.password;
+const fakeToken = (secretKey: IInput) => {
+  const token = secretKey.email + secretKey.password;
+  localStorage.setItem('token', token);
+  return token;
+};
 
 export const useAuth = () => {
   const [authState, setAuthState] = useRecoilState(rAuthState);
@@ -20,7 +24,10 @@ export const useAuth = () => {
   const localToken = localStorage.getItem('token') ?? '';
   useEffect(() => {
     if (localToken) {
-      setAuthState({ ...authState, isAuthenticated: localToken !== '' });
+      setAuthState({
+        isAuthenticated: localToken !== '',
+        token: localToken,
+      });
     }
   }, [localToken]);
 
@@ -32,7 +39,6 @@ export const useAuth = () => {
         isAuthenticated: true,
         token,
       });
-      localStorage.setItem('token', token);
       navigate('/');
     },
     [authState]
