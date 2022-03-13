@@ -3,6 +3,7 @@ import {
   Badge,
   Box,
   Button,
+  Collapse,
   Divider,
   IconButton,
   List,
@@ -16,28 +17,102 @@ import {
 import {
   usePopupState,
   bindPopover,
-  bindHover,
+  bindTrigger,
 } from 'material-ui-popup-state/hooks';
 
 import {
+  CheckBoxSharp,
+  CheckCircleOutlined,
+  CheckOutlined,
   DeleteOutlined,
   FiberManualRecord,
   GitHub,
+  HourglassEmptyOutlined,
   LogoutOutlined,
   NotificationsOutlined,
 } from '@mui/icons-material';
+import { useCallback, useState } from 'react';
+import { TransitionGroup } from 'react-transition-group';
 import { drawerWidth } from './Sidebar';
 import { useAuth } from '../../hooks/useAuth';
+
+function Notice() {
+  const [fakeNoticeList, setFakeNoticeList] = useState([1, 2, 3, 4, 5]);
+  const noticePopupState = usePopupState({
+    variant: 'popover',
+    popupId: 'noticeNavbarMenu',
+  });
+
+  const handleDelete = (item: number) => {
+    setFakeNoticeList(fakeNoticeList.filter((index: number) => index !== item));
+  };
+
+  const handleAllRead = () => {
+    setFakeNoticeList([]);
+  };
+
+  return (
+    <>
+      <IconButton
+        {...bindTrigger(noticePopupState)}
+        sx={{
+          mx: 1,
+        }}
+      >
+        <Badge badgeContent={fakeNoticeList.length} color="primary">
+          <NotificationsOutlined />
+        </Badge>
+      </IconButton>
+
+      <Menu {...bindPopover(noticePopupState)}>
+        <Paper sx={{ width: 300, maxWidth: '100%' }} elevation={0}>
+          <List dense>
+            {fakeNoticeList.length > 0 ? (
+              <>
+                <TransitionGroup>
+                  {fakeNoticeList.map((item) => (
+                    <Collapse key={item}>
+                      <ListItem
+                        secondaryAction={
+                          <IconButton
+                            edge="end"
+                            onClick={() => handleDelete(item)}
+                          >
+                            <DeleteOutlined />
+                          </IconButton>
+                        }
+                      >
+                        <ListItemText
+                          primary={`Notice ${item}`}
+                          secondary="List Secondary"
+                        />
+                      </ListItem>
+
+                      <Divider />
+                    </Collapse>
+                  ))}
+                </TransitionGroup>
+
+                <Box textAlign="center" mt={2}>
+                  <Button onClick={handleAllRead}>All Read</Button>
+                </Box>
+              </>
+            ) : (
+              <Box textAlign="center">
+                <CheckCircleOutlined fontSize="large" />
+              </Box>
+            )}
+          </List>
+        </Paper>
+      </Menu>
+    </>
+  );
+}
 
 function Navbar() {
   const accountPopupState = usePopupState({
     variant: 'popover',
     popupId: 'userNavbarMenu',
-  });
-
-  const noticePopupState = usePopupState({
-    variant: 'popover',
-    popupId: 'noticeNavbarMenu',
   });
 
   const { logout } = useAuth();
@@ -76,46 +151,9 @@ function Navbar() {
             <GitHub />
           </IconButton>
 
-          <IconButton
-            {...bindHover(noticePopupState)}
-            sx={{
-              mx: 1,
-            }}
-          >
-            <Badge badgeContent="5" color="primary">
-              <NotificationsOutlined />
-            </Badge>
-          </IconButton>
+          <Notice />
 
-          <Menu {...bindPopover(noticePopupState)}>
-            <Paper sx={{ width: 300, maxWidth: '100%' }} elevation={0}>
-              <List dense>
-                {[...Array(5)].map(() => (
-                  <Box>
-                    <ListItem
-                      secondaryAction={
-                        <IconButton edge="end">
-                          <DeleteOutlined />
-                        </IconButton>
-                      }
-                    >
-                      <ListItemText
-                        primary="List Title"
-                        secondary="List Secondary"
-                      />
-                    </ListItem>
-
-                    <Divider />
-                  </Box>
-                ))}
-                <Box textAlign="center" mt={2}>
-                  <Button>All Read</Button>
-                </Box>
-              </List>
-            </Paper>
-          </Menu>
-
-          <IconButton {...bindHover(accountPopupState)}>
+          <IconButton {...bindTrigger(accountPopupState)}>
             <Badge variant="dot" color="success" overlap="circular">
               <FiberManualRecord fontSize="large" />
             </Badge>
