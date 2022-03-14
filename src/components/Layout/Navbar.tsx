@@ -21,17 +21,14 @@ import {
 } from 'material-ui-popup-state/hooks';
 
 import {
-  CheckBoxSharp,
   CheckCircleOutlined,
-  CheckOutlined,
   DeleteOutlined,
   FiberManualRecord,
   GitHub,
-  HourglassEmptyOutlined,
   LogoutOutlined,
   NotificationsOutlined,
 } from '@mui/icons-material';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { TransitionGroup } from 'react-transition-group';
 import { drawerWidth } from './Sidebar';
 import { useAuth } from '../../hooks/useAuth';
@@ -43,7 +40,8 @@ function Notice() {
     popupId: 'noticeNavbarMenu',
   });
 
-  const handleDelete = (item: number) => {
+  // read function
+  const handleRead = (item: number) => {
     setFakeNoticeList(fakeNoticeList.filter((index: number) => index !== item));
   };
 
@@ -76,7 +74,7 @@ function Notice() {
                         secondaryAction={
                           <IconButton
                             edge="end"
-                            onClick={() => handleDelete(item)}
+                            onClick={() => handleRead(item)}
                           >
                             <DeleteOutlined />
                           </IconButton>

@@ -9,6 +9,7 @@ interface IInput {
   password: string;
 }
 
+// Here we need to use the server api to login the user
 const fakeToken = (secretKey: IInput) => {
   const token = secretKey.email + secretKey.password;
   localStorage.setItem('token', token);
