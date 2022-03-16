@@ -9,7 +9,7 @@ export default defineConfig({
     rollupOptions: {
       plugins: [
         visualizer(() => ({
-          filename: 'analyzer/analyzer.html',
+          filename: 'analyzer/index.html',
           gzipSize: true,
         })),
       ],
