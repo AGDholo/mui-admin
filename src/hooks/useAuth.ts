@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import useCurrentRoute from '../routes/useCurrentRoute';
+import useCurrentRoute from './useCurrentRoute';
 import { rAuthState } from '../states/authState';
 
 interface IInput {

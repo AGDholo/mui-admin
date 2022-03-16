@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import Navbar from './components/Layout/Navbar';
 import Sidebar, { drawerWidth } from './components/Layout/Sidebar';
 import { staticRoutes } from './routes/app.router';
-import useCurrentRoute from './routes/useCurrentRoute';
+import useCurrentRoute from './hooks/useCurrentRoute';
 import { useAuth } from './hooks/useAuth';
 
 function setDocumentTitle() {
