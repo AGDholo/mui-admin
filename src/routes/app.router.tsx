@@ -19,6 +19,7 @@ import Home from '../pages/Home';
 import Pricing from '../pages/pages/Pricing';
 import Email from '../pages/apps/Email';
 import Login from '../pages/pages/Login';
+import MList from '../components/MList';
 
 export interface IAppRoutes extends RouteObject {
   data?: {
@@ -162,6 +163,10 @@ export const staticRoutes: IAppRoutes[] = [
         data: {
           icon: <ListAltOutlined />,
           label: 'List',
+        },
+        element: <MList />,
+        meta: {
+          title: 'List',
         },
       },
       {

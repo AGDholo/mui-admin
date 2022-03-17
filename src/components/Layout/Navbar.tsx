@@ -2,9 +2,6 @@ import {
   AppBar,
   Badge,
   Box,
-  Button,
-  Collapse,
-  Divider,
   IconButton,
   List,
   ListItem,
@@ -21,33 +18,20 @@ import {
 } from 'material-ui-popup-state/hooks';
 
 import {
-  CheckCircleOutlined,
-  DeleteOutlined,
   FiberManualRecord,
   GitHub,
   LogoutOutlined,
   NotificationsOutlined,
 } from '@mui/icons-material';
-import { useState } from 'react';
-import { TransitionGroup } from 'react-transition-group';
 import { drawerWidth } from './Sidebar';
 import { useAuth } from '../../hooks/useAuth';
+import { MNotice } from '../MList';
 
 function Notice() {
-  const [fakeNoticeList, setFakeNoticeList] = useState([1, 2, 3, 4, 5]);
   const noticePopupState = usePopupState({
     variant: 'popover',
     popupId: 'noticeNavbarMenu',
   });
-
-  // read function
-  const handleRead = (item: number) => {
-    setFakeNoticeList(fakeNoticeList.filter((index: number) => index !== item));
-  };
-
-  const handleAllRead = () => {
-    setFakeNoticeList([]);
-  };
 
   return (
     <>
@@ -57,50 +41,14 @@ function Notice() {
           mx: 1,
         }}
       >
-        <Badge badgeContent={fakeNoticeList.length} color="primary">
+        <Badge badgeContent={5} color="primary">
           <NotificationsOutlined />
         </Badge>
       </IconButton>
 
       <Menu {...bindPopover(noticePopupState)}>
         <Paper sx={{ width: 300, maxWidth: '100%' }} elevation={0}>
-          <List dense>
-            {fakeNoticeList.length > 0 ? (
-              <>
-                <TransitionGroup>
-                  {fakeNoticeList.map((item) => (
-                    <Collapse key={item}>
-                      <ListItem
-                        secondaryAction={
-                          <IconButton
-                            edge="end"
-                            onClick={() => handleRead(item)}
-                          >
-                            <DeleteOutlined />
-                          </IconButton>
-                        }
-                      >
-                        <ListItemText
-                          primary={`Notice ${item}`}
-                          secondary="List Secondary"
-                        />
-                      </ListItem>
-
-                      <Divider />
-                    </Collapse>
-                  ))}
-                </TransitionGroup>
-
-                <Box textAlign="center" mt={2}>
-                  <Button onClick={handleAllRead}>All Read</Button>
-                </Box>
-              </>
-            ) : (
-              <Box textAlign="center">
-                <CheckCircleOutlined fontSize="large" />
-              </Box>
-            )}
-          </List>
+          <MNotice />
         </Paper>
       </Menu>
     </>

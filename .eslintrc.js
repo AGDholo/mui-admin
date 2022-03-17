@@ -16,6 +16,8 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/jsx-wrap-multilines': 'off',
+    'react/require-default-props': 'off',
+    'react/destructuring-assignment': 'off',
     'react/jsx-filename-extension': [
       2,
       { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
