@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Checkbox,
   Grid,
   List,
   ListItem,
@@ -12,6 +13,7 @@ import {
   TableCell,
   TableContainer,
   TableRow,
+  Typography,
 } from '@mui/material';
 import {
   DraftsOutlined,
@@ -50,47 +52,38 @@ const listItemData = [
   },
 ];
 
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number
-) {
-  return {
-    name,
-    calories,
-    fat,
-    carbs,
-    protein,
-  };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
 function BasicTable() {
   return (
-    <TableContainer component={Paper} variant="outlined">
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+    <TableContainer component={Paper} elevation={0}>
+      <Table aria-label="simple table">
         <TableBody>
-          {rows.map((row) => (
+          {[0, 1, 2, 3, 4].map((row) => (
             <TableRow
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              key={row}
+              sx={{
+                '&:last-child td, &:last-child th': { border: 0 },
+                '&:hover': {
+                  boxShadow: 1,
+                  cursor: 'pointer',
+                },
+              }}
+              hover
             >
-              <TableCell component="th" scope="row">
-                {row.name}
+              <TableCell sx={{ display: 'flex', alignItems: 'center' }}>
+                <Checkbox />
+                Email title
+                <Typography
+                  variant="body2"
+                  sx={{
+                    ml: 2,
+                  }}
+                  color="textSecondary"
+                >
+                  The Overflow #117: New podcast hosts, the CEO on PagerDuty,
+                  and horrible code on a deadline
+                </Typography>
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+              <TableCell align="right">3/17</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -103,7 +96,7 @@ function Email() {
   return (
     <Box sx={{ height: ' calc(100vh - 200px)' }}>
       <Grid spacing={2} container sx={{ height: '100%' }}>
-        <Grid item xs={12} md={3} lg={2}>
+        <Grid item xs={12} md={5} lg={3} xl={2}>
           <Paper
             variant="outlined"
             sx={{
@@ -137,11 +130,10 @@ function Email() {
           </Paper>
         </Grid>
 
-        <Grid item xs={12} md={9} lg={10}>
+        <Grid item xs={12} md={7} lg={9} xl={10}>
           <Paper
             variant="outlined"
             sx={{
-              p: 2,
               height: '100%',
             }}
           >
